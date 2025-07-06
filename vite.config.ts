@@ -4,6 +4,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: '/CybrainSA/', // 🔥 هذا هو السطر اللي أضفناه
   plugins: [
     react(),
     mode === "development"
@@ -37,7 +38,6 @@ window.addEventListener('message', async (message) => {
     },
   },
   server: {
-    // host: true,  // هذا السطر محذوف الآن
     port: 5173,
   },
 }));
