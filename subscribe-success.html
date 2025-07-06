@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>طلب الاشتراك - CybrainSA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background: #121212;
+      font-family: 'Cairo', sans-serif;
+      padding: 20px 10px;
+      text-align: center;
+      margin: 0;
+      color: #e0e0e0;
+    }
+    .box {
+      max-width: 400px;
+      margin: auto;
+      background: #1e1e1e;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 255, 128, 0.1);
+    }
+    h2 {
+      color: #22c55e;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    input, select, button {
+      width: 100%;
+      font-family: 'Cairo', sans-serif;
+      font-size: 16px;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    input, select {
+      border: 1px solid #333;
+      background: #2c2c2c;
+      color: #f0f0f0;
+    }
+    input:focus, select:focus {
+      border-color: #22c55e;
+      outline: none;
+    }
+    button {
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #submitBtn {
+      background-color: #22c55e;
+      color: black;
+      box-shadow: 0 0 12px #22c55e;
+    }
+    #submitBtn:hover {
+      filter: brightness(90%);
+    }
+    #bankTransferBtn {
+      background-color: #333;
+      color: #fff;
+    }
+    #bankTransferInfo {
+      display: none;
+      background: #2b2b2b;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      text-align: right;
+      font-size: 14px;
+    }
+    .upload-label {
+      display: inline-block;
+      background: #22c55e;
+      color: black;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    #confirmationMessage {
+      display: none;
+      margin-top: 20px;
+      background: #143214;
+      padding: 20px;
+      border-radius: 12px;
+      color: #a5f3a5;
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="formContainer">
+    <h2>طلب الاشتراك - CybrainSA</h2>
+    <form id="subscriptionForm" novalidate>
+      <input type="text" name="fullname" placeholder="الاسم الكامل" required />
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+      <input type="tel" name="phone" placeholder="رقم الجوال" required />
+
+      <select name="plan" id="planSelect" required>
+        <option value="">اختر نوع الاشتراك</option>
+        <option value="خطة المبتدئين">خطة المبتدئين</option>
+        <option value="خطة المحترفين">خطة المحترفين</option>
+        <option value="خطة المؤسسات">خطة المؤسسات</option>
+      </select>
+
+      <select name="duration" required>
+        <option value="شهر واحد">شهر واحد</option>
+        <option value="ثلاثة أشهر">ثلاثة أشهر</option>
+        <option value="سنة كاملة">سنة كاملة</option>
+      </select>
+
+      <button type="button" id="bankTransferBtn">التحويل البنكي</button>
+      <div id="bankTransferInfo">
+        <p><strong>اسم الحساب:</strong> Cybrain للأنظمة الأمنية</p>
+        <p><strong>البنك:</strong> بنك البلاد</p>
+        <p><strong>الآيبان:</strong> SA3000000000000000000000</p>
+        <label for="transferReceipt">إرفاق إيصال التحويل:</label>
+        <input type="file" id="transferReceipt" name="transferReceipt" style="display: none;" />
+        <label for="transferReceipt" class="upload-label">📎 اضغط هنا لإرفاق الإيصال</label>
+      </div>
+
+      <button type="submit" id="submitBtn">تأكيد الاشتراك</button>
+    </form>
+  </div>
+
+  <div id="confirmationMessage"></div>
+
+  <script>
+    const bankTransferBtn = document.getElementById('bankTransferBtn');
+    const bankTransferInfo = document.getElementById('bankTransferInfo');
+    const form = document.getElementById('subscriptionForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const formContainer = document.getElementById('formContainer');
+    const transferReceipt = document.getElementById('transferReceipt');
+    const planSelect = document.getElementById('planSelect');
+
+    bankTransferBtn.addEventListener('click', () => {
+      bankTransferInfo.style.display = bankTransferInfo.style.display === 'none' ? 'block' : 'none';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // تحقق من صحة الحقول الأساسية
+      if (!form.checkValidity()) {
+        alert('يرجى تعبئة جميع الحقول المطلوبة بشكل صحيح.');
+        return;
+      }
+
+      // تحقق من إيصال التحويل لو تم اختيار التحويل البنكي
+      if (bankTransferInfo.style.display === 'block' && transferReceipt.files.length === 0) {
+        alert('يرجى إرفاق إيصال التحويل.');
+        return;
+      }
+
+      // الحصول على بيانات الاشتراك
+      const fullname = form.fullname.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const plan = planSelect.options[planSelect.selectedIndex].text;
+
+      // إخفاء النموذج
+      formContainer.style.display = 'none';
+
+      // عرض رسالة التأكيد
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = 
+        `✅ تم استلام طلب الاشتراك!\n\n` +
+        `الاسم: ${fullname}\n` +
+        `الباقة المختارة: ${plan}\n\n` +
+        `سيتم التواصل معك خلال وقت قصير لتفعيل حسابك.\n\n` +
+        `لأي استفسار: واتساب 0500000000`;
+
+      // هنا ممكن تضيف كود إرسال البيانات للسيرفر إذا عندك API
+    });
+  </script>
+</body>
+</html>
