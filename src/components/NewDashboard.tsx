@@ -361,12 +361,10 @@ export function NewDashboard({ onNavigate }: DashboardProps) {
               <p className="text-gray-300 mb-4 text-center md:col-span-3">
                 منصات التواصل الاجتماعي للمطور:
               </p>
-              {/* مكان الصورة الشخصية */}
+              
               <div className="flex flex-col items-center md:col-span-3 mb-4">
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-green-500 bg-gray-800 flex items-center justify-center">
                   {/* يمكنك إضافة صورة شخصية هنا */}
-                  
-                  
                 </div>
                 {/* منصات التواصل الاجتماعي تحت الصورة بشكل أفقي */}
                 <div className="flex justify-center gap-4 mt-4">
