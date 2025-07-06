@@ -365,11 +365,7 @@ export function NewDashboard({ onNavigate }: DashboardProps) {
               <div className="flex flex-col items-center md:col-span-3 mb-4">
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-green-500 bg-gray-800 flex items-center justify-center">
                   {/* يمكنك إضافة صورة شخصية هنا */}
-                  <img
-                    src="/my-photo.jpg"
-                    alt="صورة المطور"
-                    className="w-full h-full object-cover"
-                  />
+                  
                   {/* مثال: <img src="/my-photo.jpg" alt="صورة المطور" className="w-full h-full object-cover" /> */}
                 </div>
                 {/* منصات التواصل الاجتماعي تحت الصورة بشكل أفقي */}
