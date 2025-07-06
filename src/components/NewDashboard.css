@@ -1,0 +1,176 @@
+/* Reset box sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Container padding */
+.dashboard-container {
+  padding: 2rem;
+  font-family: 'Cairo', sans-serif;
+  background-color: #121212; /* dark bg */
+  color: white;
+}
+
+/* Titles */
+.dashboard-container h1,
+.dashboard-container h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Cards grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* For tablets and up */
+@media(min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For desktops */
+@media(min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card styles */
+.stat-card {
+  background: linear-gradient(90deg, rgba(34,197,94,0.2), rgba(5,150,105,0.2));
+  border: 1px solid rgba(5,150,105,0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card p {
+  margin: 0;
+}
+
+/* Progress bar container */
+.progress-container {
+  background-color: rgba(55, 65, 81, 0.5);
+  border-radius: 1.5rem;
+  height: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+/* Progress bar fill */
+.progress-bar {
+  background: linear-gradient(90deg, #22c55e, #f3f4f6);
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 1.5rem;
+}
+
+/* Quick actions grid */
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* For tablets */
+@media(min-width: 768px) {
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For large desktops */
+@media(min-width: 1280px) {
+  .quick-actions {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Buttons style */
+.quick-actions button {
+  background: linear-gradient(90deg, #22c55e, #166534);
+  border: none;
+  color: white;
+  padding: 1rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quick-actions button:hover {
+  background: linear-gradient(90deg, #166534, #22c55e);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal-box {
+  background-color: #1f2937;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+}
+
+/* Responsive image */
+.profile-photo {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #22c55e;
+  margin: 0 auto 1rem auto;
+}
+
+/* Text centering for social section */
+.social-section {
+  text-align: center;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: rgba(0,0,0,0.6);
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: rgba(0,0,0,0.9);
+}
